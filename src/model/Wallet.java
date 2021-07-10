@@ -32,6 +32,7 @@ public class Wallet {
             return "No se puede superar el limite " + CAPACIDAD_MAXIMA;
         }
         saldo += value;
+        if(verificarMeta()){System.out.println("Has cumpledo la meta!");}
         return "Transacción exitosa, nuevo saldo " + saldo;
     }
 
@@ -54,12 +55,28 @@ public class Wallet {
         }
         return "No tiene saldo suficiente para realizar esta transacción";
     }
-    
-    public String establecerMeta(int value){
-        if(value > 0 && value > saldo && tieneLimite == false);
-            return "Su meta se estableció en: " + value + "su saldo es: " + saldo ;
-    
 
-    
+    public boolean establecerMeta(int value){
+        if(value == 0){
+            meta = value;
+            return true;
+        }
+        if(value < 0 || value <= saldo || (value > CAPACIDAD_MAXIMA && tieneLimite)){
+            return false;       
+        
+        }
+    }
+
+    public boolean verificarMeta() {
+        //Antes de cambiarlo a boolean
+        //if(value > 0 && value > saldo && tieneLimite == false){
+          //  return "Su meta se estableció en: " + value + "su saldo es: " + saldo ;
+        if (meta == 0 || meta > saldo){
+            return false;
+        }
+        return true;
+        
+
+
     }
 }
