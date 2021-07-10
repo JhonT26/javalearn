@@ -63,8 +63,9 @@ public class Wallet {
         }
         if(value < 0 || value <= saldo || (value > CAPACIDAD_MAXIMA && tieneLimite)){
             return false;       
-        
         }
+        meta = value;
+        return true;
     }
 
     public boolean verificarMeta() {
